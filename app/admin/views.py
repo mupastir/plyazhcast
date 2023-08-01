@@ -2,7 +2,16 @@ import functools
 from datetime import datetime
 
 import pytz
-from flask import Blueprint, flash, g, redirect, render_template, request, session, url_for
+from flask import (
+    Blueprint,
+    flash,
+    g,
+    redirect,
+    render_template,
+    request,
+    session,
+    url_for,
+)
 from werkzeug.security import check_password_hash
 from werkzeug.utils import secure_filename
 
@@ -42,7 +51,7 @@ def login():
 @admin_bp.route("/logout")
 def logout():
     session.clear()
-    return redirect(url_for("index"))
+    return redirect(url_for("podcast.main_page"))
 
 
 def login_required(view):

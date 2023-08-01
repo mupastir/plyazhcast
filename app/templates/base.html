@@ -20,16 +20,16 @@
 <meta name="MobileOptimized" content="320">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
-<link rel="canonical" href="https://plyazhcast.ua/">
+<link rel="canonical" href="https://plyazhcast.org.ua/">
 
-<link href="/static/images/favicon.ico" rel="shortcut icon">
-<link href="{{ url_for('static', filename='style.css') }}" media="screen, projection" rel="stylesheet" type="text/css">
-<script src="/static/modernizr-2.0.js"></script>
+<link href="images/favicon.ico" rel="shortcut icon">
+<link href="css/stylesheet.css" media="screen, projection" rel="stylesheet" type="text/css">
+<script src="js/modernizr-2.0.js"></script>
 
 <link href='https://fonts.googleapis.com/css?family=PT+Sans+Caption:400,700&subset=latin,cyrillic' rel='stylesheet' type='text/css'>
 
 
-<script src="/static/audio.js"></script>
+<script src="js/audio.js"></script>
 <script>
   audiojs.events.ready(function() {
     var as = audiojs.createAll();
@@ -49,30 +49,18 @@
 		</ul>
 		<form class="main-header__search" action="https://google.com/search" method="get">
 			<fieldset class="main-header__search-fieldset" role="search">
-				<input type="hidden" name="as_sitesearch" value="localhost" />
+				<input type="hidden" name="as_sitesearch" value="plyazhcast.org.ua" />
 				<input class="main-header__search-input" type="text" name="q" results="0" placeholder="Пошук"/>
 			</fieldset>
 		</form>
 		<ul class="main-navigation">
 		<li class="main-navigation__list"><a class="main-navigation__link" href="/"><h1 class="main-navigation__link-header">Подкаст про пляжний волейбол Пляжкаст</h1></a></li>
-          {% if g.user %}
-          <li class="main-navigation__list">
-            <a class="main-navigation__link" href="{{ url_for('admin.create') }}"><p>Add new episode</p></a>
-          </li>
-       
-          <li class="main-navigation__list"><span>{{ g.user['username'] }}</span>
-            <a class="main-navigation__link" href="{{ url_for('admin.logout') }}"><p>Log Out</p></a>
-          </li>
-            {% endif %}
 		</ul>
 	</nav>
     </header>
 
     <div id="main" class="main">
       <div id="content" class="content">
-        {% for message in get_flashed_messages() %}
-        <div class="flash">{{ message }}</div>
-        {% endfor %}
         {% block main_content %}
         {% endblock %}
         <aside class="sidebar">
@@ -81,22 +69,22 @@
           </section>
 
           <section class="sidebar__external-links">
-            <a class="sidebar__external-link" href="/feed"> <img align="absmiddle" src="/static/images/podcast-feed.png" /> </a>
-            <a class="sidebar__external-link" href="{{apple_podcast_link}}"> <img align="absmiddle" src="/static/images/itunes-feed.png" /></a>
+            <a class="sidebar__external-link" href="/feed"> <img align="absmiddle" src="./images/podcast-feed.png" /> </a>
+            <a class="sidebar__external-link" href="{{apple_podcast_link}}"> <img align="absmiddle" src="./images/itunes-feed.png" /></a>
           </section>
 
           <section class="sidebar__useful-links">
             <h2 class="sidebar__useful-links-title">Корисне</h2>
             <ul class="sidebar__useful-links-list">
               <li class="sidebar__useful-links-list-item"><a class="sidebar__useful-link" href="/info">Інформація про подкаст</a></li>
-              <li class="sidebar__useful-links-list-item"><a class="sidebar__useful-link" href="/feed">Усі фіды для підписки</a></li>
+              <li class="sidebar__useful-links-list-item"><a class="sidebar__useful-link" href="/feed">Усі фіди для підписки</a></li>
             </ul>
           </section>
 
           <section class="sidebar__feedback">
             <h2 class="sidebar__feedback-title">Зворотній зв'язок</h2>
             <ul class="sidebar__feedback-list">
-              <li class="sidebar__feedback-list-item"><a class="sidebar__feedback-link" href="mailto:plyazhcast@gmail.com">Надіслати email</a></li>
+              <li class="sidebar__feedback-list-item"><a class="sidebar__feedback-link" href="mailto:plyazhcast@ukr.net">Надіслати email</a></li>
             </ul>
           </section>
 
@@ -105,7 +93,7 @@
               <tbody>
                 <tr>
                   <td>
-                    <a href="/license/"><img class="sidebar__license-image" src="/static/images/88x30.png" /></a>
+                    <a href="/license/"><img class="sidebar__license-image" src="images/88x30.png" /></a>
                   </td>
                   <td>&nbsp;</td>
                   <td>

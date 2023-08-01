@@ -30,7 +30,7 @@ def create_app(test_config=None):
         IMAGE_UPLOAD_PATH=os.environ.get("IMAGE_UPLOAD_PATH", "/static/uploads/images"),
         AUDIO_UPLOAD_PATH=os.environ.get("AUDIO_UPLOAD_PATH", "/static/uploads/audio"),
         WTF_CSRF_SECRET_KEY=os.environ.get("WTF_CSRF_SECRET_KEY", "test"),
-        HOST=os.environ.get("HOST", "http://localhost:8080"),
+        HOST=os.environ.get("HOST", "https://plyazhcast.org.ua"),
         MONGODB_SETTINGS={
             "db": os.environ.get("DB_NAME", "plyazhcast"),
             "username": os.environ.get("DB_USER", "root"),

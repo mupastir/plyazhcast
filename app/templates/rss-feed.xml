@@ -19,19 +19,19 @@
 
 
     <itunes:summary>Подкаст про пляжний волейбол.</itunes:summary><itunes:category text="Sports &amp; Beach Volleyball"><itunes:category text="Sports Journals"/></itunes:category><itunes:category text="Sports"><itunes:category text="Beach Volleyball"/></itunes:category><itunes:owner><itunes:email>plyazhcast@gmail.com</itunes:email><itunes:name>Пляжкаст</itunes:name></itunes:owner>
-    {% for episode in episodes.items %}
+    {% for episode in episodes %}
     <item>
       <title><![CDATA[{{episode.title}}]]></title>
-      <description><![CDATA[<p><img src="{{episode.cover_url}}" alt=""></p>
+      <description><![CDATA[<p><img src="https://plyazhcast.org.ua/{{episode.cover_url}}" alt=""></p>
 <ul>
 {% for theme in episode.themes %}
 <li>{{theme}}</li>
 {% endfor %}
 </ul>
-<p><a href="{{episode.mp3_url}}">аудио</a></p>
+<p><a href="https://plyazhcast.org.ua/{{episode.mp3_url}}">аудио</a></p>
 <audio src="{{episode.mp3_url}}" preload="none"></audio>]]></description>
-      <link>{{episode.site_link}}</link>
-      <guid>{{episode.site_link}}</guid>
+      <link>"https://plyazhcast.org.ua/p/{{episode.date_created.year}}/{{episode.date_created.month}}/{{episode.date_created.day}}/podcast-{{episode.number}}"</link>
+      <guid>"https://plyazhcast.org.ua/p/{{episode.date_created.year}}/{{episode.date_created.month}}/{{episode.date_created.day}}/podcast-{{episode.number}}"</guid>
       <pubDate>{{episode.date_created.strftime("%a, %d %b %Y %H:%M:%S %z")}}</pubDate>
       <itunes:author><![CDATA[Plyazhcast]]></itunes:author>
       <itunes:summary><![CDATA[
@@ -43,9 +43,9 @@
 
 аудио
 ]]></itunes:summary>
-      <itunes:image href="{{episode.cover_url}}"/>
-      <enclosure length="" type="audio/mp3" url="{{episode.mp3_url}}"/>
-    <author>plyazhcast@gmail.com (Plyazhcast)</author><itunes:explicit>no</itunes:explicit><itunes:subtitle>{% for theme in episode.themes %}{{theme}}{% endfor %}</itunes:subtitle><itunes:keywords>ukrainian,beach volleyball,sports</itunes:keywords></item>
+      <itunes:image href="https://plyazhcast.org.ua/{{episode.cover_url}}"/>
+      <enclosure length="" type="audio/mp3" url="https://plyazhcast.org.ua/{{episode.mp3_url}}"/>
+    <author>plyazhcast@ukr.net (Plyazhcast)</author><itunes:explicit>no</itunes:explicit><itunes:subtitle>{% for theme in episode.themes %}{{theme}}{% endfor %}</itunes:subtitle><itunes:keywords>ukrainian,beach volleyball,sports</itunes:keywords></item>
 {% endfor %}
   </channel>
 </rss>
