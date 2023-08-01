@@ -1,10 +1,9 @@
 import click
-
+import werkzeug
 from flask.cli import FlaskGroup
+
 from app import create_app
 from app.models import AdminUser
-import werkzeug
-
 
 flask_app = create_app()
 
@@ -31,4 +30,3 @@ def add_admin(email, password):
 
 if __name__ == "__main__":
     cli()
-

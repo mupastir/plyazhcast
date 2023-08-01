@@ -5,7 +5,7 @@ body {
 }
 
 body {
-	background: #fff url("/images/noise.png?1539385355") top left;
+	background: #fff url("/static/images/noise.png?1539385355") top left;
 	font-size: 1em;
 	color: #303030;
 	font-family: "PT Sans Caption", "Istok Web", Arial, Verdana, Helvetica,
@@ -212,7 +212,7 @@ li {
 .main-header__rss-link::after {
 	content: "";
 	position: absolute;
-	background: url("/images/rss-white.png?time=1539938196") no-repeat;
+	background: url("/static/images/rss-white.png?time=1539938196") no-repeat;
 	width: 22px;
 	height: 22px;
 	opacity: 0.9;

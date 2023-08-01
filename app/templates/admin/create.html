@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+{% from "_formhelpers.html" import render_field %}
+
+{% block main_content %}
+  <form method="post" enctype="multipart/form-data">
+      {{ form.csrf_token }}
+    <dl>
+    {{ render_field(form.title) }}
+    {{ render_field(form.audio) }}
+    {{ render_field(form.cover_image) }}
+    {{ render_field(form.themes) }}
+  </dl>
+  <p><input type="submit" value="Upload">
+  </form>
+{% endblock %}
