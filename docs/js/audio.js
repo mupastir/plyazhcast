@@ -35,7 +35,7 @@
       loop: false,
       preload: true,
       initialVolume: 0.5,
-      imageLocation: path + '/images/player-graphics.gif',
+      imageLocation: path + 'images/player-graphics.gif',
       swfLocation: path + 'audiojs.swf',
       useFlash: (function() {
         var a = document.createElement('audio');
