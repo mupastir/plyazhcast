@@ -64,7 +64,6 @@
         
 <div class="blog-index">
 
-
 <article class="article">
   <header class="article__header">
     <h2 class="article__title">
@@ -72,7 +71,7 @@
     </h2>
 
     <p class="article__meta">
-      <time class="article__datetime" datetime="2023-08-02 11:29:50+03:00" pubdate="" data-updated="true">
+      <time class="article__datetime" datetime="2023-08-02 11:29:50.945605+03:00" pubdate="" data-updated="true">
         2023-08-02
       </time>
     </p>
@@ -94,17 +93,6 @@
     </div>
 
   </article>
-    
-  
-
-  
-    <!-- <div class="pagination content__pagination"> -->
-      
-    <!--     <a class="pagination__link pagination__prev" href="/?page=2">&larr;&nbsp;Раніше</a> -->
-      
-    <!--     <div class="pagination__no-link"></div> -->
-      
-    <!-- </div> -->
 </div>
 
  
@@ -161,7 +149,7 @@
     </div>
     <footer class="footer" role="contentinfo">
   <p class="footer__copy">
-    Some rights reserved, 2023&nbsp;-&nbsp;plyazhcast&nbsp;-&nbsp;
+    Some rights reserved, &nbsp;-&nbsp;plyazhcast&nbsp;-&nbsp;
   </p>
     </footer>
 
