@@ -19,7 +19,7 @@
 
   <div class="article__content">
   
-  <p><img src="{{episode.cover_url}}" alt=""></p>
+  <p><img src="/{{episode.cover_url}}" alt=""></p>
 
   <ul>
     {% for theme in episode.themes %}
@@ -27,23 +27,13 @@
     {% endfor %}
   </ul>
 
-  <p><a href="{{episode.mp3_url}}">аудіо</a><br>
-    <audio src="{{episode.mp3_url}}" preload="none"></audio>
+  <p><a href="/{{episode.mp3_url}}">аудіо</a><br>
+    <audio src="/{{episode.mp3_url}}" preload="none"></audio>
     </p>
     </div>
 
   </article>
     {% endfor %}
-  
-
-  
-    <!-- <div class="pagination content__pagination"> -->
-      
-    <!--     <a class="pagination__link pagination__prev" href="/?page=2">&larr;&nbsp;Раніше</a> -->
-      
-    <!--     <div class="pagination__no-link"></div> -->
-      
-    <!-- </div> -->
 </div>
 
  {% endblock %}

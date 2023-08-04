@@ -1,24 +1,24 @@
 <?xml version="1.0" encoding="utf-8" standalone="no"?><rss xmlns:itunes="http://www.itunes.com/dtds/podcast-1.0.dtd"  xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0">
   <channel>
-    <title>{{title}}</title>
-    <link>{{host}}</link>
+    <title>Пляжкаст</title>
+    <link>https://plyazhcast.org.ua</link>
     <language>ua</language>
     <copyright>Creative Commons - Attribution, Noncommercial, No Derivative Works 3.0 License.</copyright>
     <itunes:author>Пляжкаст</itunes:author>
     <itunes:subtitle>Подкаст про пляжний волейбол.</itunes:subtitle>
-    <description>Огляди міжнародних турнірів з волейболу пляжного світової серії Elite 16, PRO Tour, Challange та інші.</description>
+    <description>Огляди міжнародних турнірів з волейболу пляжного світової серії Elite 16, PRO Tour, Challange та інші.Огляди матчів волейболу пляжного чемпіонату світу, світових серій Pro tour: Elite 16, Challange, Futures та інших міжнародних турнірів.</description>
     <itunes:explicit>no</itunes:explicit>
 
     
 
-    <itunes:image href="{{image_link}}"/>
+    <itunes:image href="https://plyazhcast.org.ua/images/plyazhcast-logo.png"/>
 
     
 
     <itunes:keywords>ukranian,beach volleyball,volleyball</itunes:keywords>
 
 
-    <itunes:summary>Подкаст про пляжний волейбол.</itunes:summary><itunes:category text="Sports &amp; Beach Volleyball"><itunes:category text="Sports Journals"/></itunes:category><itunes:category text="Sports"><itunes:category text="Beach Volleyball"/></itunes:category><itunes:owner><itunes:email>plyazhcast@gmail.com</itunes:email><itunes:name>Пляжкаст</itunes:name></itunes:owner>
+    <itunes:summary>Подкаст про пляжний волейбол.</itunes:summary><itunes:category text="Sports &amp; Beach Volleyball"><itunes:category text="Sports Journals"/></itunes:category><itunes:category text="Sports"><itunes:category text="Beach Volleyball"/></itunes:category><itunes:owner><itunes:email>plyazhcast@ukr.net</itunes:email><itunes:name>Пляжкаст</itunes:name></itunes:owner>
     {% for episode in episodes %}
     <item>
       <title><![CDATA[{{episode.title}}]]></title>
@@ -33,7 +33,7 @@
       <link>"https://plyazhcast.org.ua/p/{{episode.date_created.year}}/{{episode.date_created.month}}/{{episode.date_created.day}}/podcast-{{episode.number}}"</link>
       <guid>"https://plyazhcast.org.ua/p/{{episode.date_created.year}}/{{episode.date_created.month}}/{{episode.date_created.day}}/podcast-{{episode.number}}"</guid>
       <pubDate>{{episode.date_created.strftime("%a, %d %b %Y %H:%M:%S %z")}}</pubDate>
-      <itunes:author><![CDATA[Plyazhcast]]></itunes:author>
+      <itunes:author><![CDATA[Пляжкаст]]></itunes:author>
       <itunes:summary><![CDATA[
 
 
@@ -45,7 +45,7 @@
 ]]></itunes:summary>
       <itunes:image href="https://plyazhcast.org.ua/{{episode.cover_url}}"/>
       <enclosure length="" type="audio/mp3" url="https://plyazhcast.org.ua/{{episode.mp3_url}}"/>
-    <author>plyazhcast@ukr.net (Plyazhcast)</author><itunes:explicit>no</itunes:explicit><itunes:subtitle>{% for theme in episode.themes %}{{theme}}{% endfor %}</itunes:subtitle><itunes:keywords>ukrainian,beach volleyball,sports</itunes:keywords></item>
+    <author>plyazhcast@ukr.net (Пляжкаст)</author><itunes:explicit>no</itunes:explicit><itunes:subtitle>{% for theme in episode.themes %}{{theme}} {% endfor %}</itunes:subtitle><itunes:keywords>ukrainian,beach volleyball,sports</itunes:keywords></item>
 {% endfor %}
   </channel>
 </rss>
