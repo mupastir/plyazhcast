@@ -1,4 +1,5 @@
 import json
+import os
 import shutil
 from datetime import datetime
 from functools import reduce
@@ -7,9 +8,8 @@ import click
 import pytz
 from jinja2 import Environment, FileSystemLoader, select_autoescape
 
-from app.datamodels import Episode
-
-TIME_FORMAT = "%a, %d %b %Y %H:%M:%S %z"
+from app.models import Episode
+from app.utils import dump_date, load_date
 
 tz = pytz.timezone("Europe/Kyiv")
 jinja_env = Environment(
@@ -17,19 +17,18 @@ jinja_env = Environment(
 )
 
 
-def load_date(episode: dict):
-    date_created = episode.get("date_created", None)
-    if date_created:
-        date_created = datetime.strptime(date_created, TIME_FORMAT)
-        episode["date_created"] = date_created
-    return episode
+def build_main_page(episodes: list[Episode]):
+    main_page_template = jinja_env.get_template("index.html")
+    with open("./docs/index.html", "w") as main_page:
+        main_page.write(
+            main_page_template.render(episodes=episodes, year=datetime.now().year)
+        )
 
 
-def dump_date(episode: dict):
-    date_created = episode.get("date_created", None)
-    if date_created:
-        episode["date_created"] = date_created.strftime(TIME_FORMAT)
-    return episode
+def build_rss_feed(episodes: list[Episode]):
+    rss_feed_template = jinja_env.get_template("rss-feed.xml")
+    with open("./docs/feed.xml", "w") as rss_page:
+        rss_page.write(rss_feed_template.render(episodes=episodes))
 
 
 @click.group()
@@ -39,18 +38,18 @@ def cli():
 
 @cli.command("add_new_episode")
 @click.option("--title", help="Episode title", default="")
-@click.option("--cover_impage_path", help="Cover image path", default="")
+@click.option("--cover_image_path", help="Cover image path", default="")
 @click.option("--mp3_file_path", help="Audio file path", default="")
 @click.option("--themes", help="Themes", default="")
-def add_episode(title="", cover_impage_path="", mp3_file_path="", themes=""):
+def add_episode(title="", cover_image_path="", mp3_file_path="", themes=""):
     with open("./episodes.json", "r") as episodes_db:
         episodes_loaded = json.load(episodes_db)
 
     episodes = [Episode(**load_date(row)) for row in episodes_loaded]
     new_episode_number = len(episodes) + 1
-    cover_image_name = "podcast-{new_episode_number}-cover.jpg"
-    audio_name = "podcast-{new_episode_number}-audio.mp3"
-    shutil.copy2(cover_impage_path, f"./docs/images/{cover_image_name}")
+    cover_image_name = f"podcast-{new_episode_number}-cover.jpeg"
+    audio_name = f"podcast-{new_episode_number}-audio.mp3"
+    shutil.copy2(cover_image_path, f"./docs/images/{cover_image_name}")
     shutil.copy2(mp3_file_path, f"./docs/files/{audio_name}")
     themes = themes.split("\n")
     new_episode = Episode(
@@ -62,9 +61,35 @@ def add_episode(title="", cover_impage_path="", mp3_file_path="", themes=""):
         date_created=datetime.now(tz),
     )
     episodes.append(new_episode)
+    episode_link_path = f"./docs/p/{new_episode.date_created.year}/{new_episode.date_created.month}/{new_episode.date_created.day}"
+    if not os.path.isdir(episode_link_path):
+        os.makedirs(episode_link_path)
+
+    episode_template = jinja_env.get_template("episode.html")
+    with open(
+        f"{episode_link_path}/podcast-{new_episode_number}.html", "w"
+    ) as new_podcast_file:
+        new_podcast_file.write(episode_template.render(episode=new_episode))
+
+    build_main_page(episodes[:-11:-1])
+    build_rss_feed(episodes[:-11:-1])
     episodes_dumped = [dump_date(episode.model_dump()) for episode in episodes]
     with open("./episodes.json", "w") as episodes_db:
         json.dump(episodes_dumped, episodes_db)
+
+
+@cli.command("rebuild_info_page")
+def rebuild_info_page():
+    info_page_template = jinja_env.get_template("info.html")
+    with open("./docs/info.html", "w") as info_page:
+        info_page.write(info_page_template.render(year=datetime.now().year))
+
+
+@cli.command("rebuild_license_page")
+def rebuild_license_page():
+    license_page_template = jinja_env.get_template("license.html")
+    with open("./docs/license.html", "w") as license_page:
+        license_page.write(license_page_template.render(year=datetime.now().year))
 
 
 @cli.command("rebuild_main_page")
@@ -72,12 +97,17 @@ def rebuild_main_page():
     with open("./episodes.json", "r") as episodes_db:
         episodes_loaded = json.load(episodes_db)
 
-    episodes = [Episode(**make_date(row)) for row in episodes_loaded][:10]
-    main_page_template = jinja_env.get_template("index.html")
-    with open("./docs/index.html", "w") as main_page:
-        main_page.write(
-            main_page_template.render(episodes=episodes, year=datetime.now().year)
-        )
+    episodes = [Episode(**load_date(row)) for row in episodes_loaded][:-11:-1]
+    build_main_page(episodes)
+
+
+@cli.command("rebuild_rss_feed")
+def rebuild_rss_feed():
+    with open("./episodes.json", "r") as episodes_db:
+        episodes_loaded = json.load(episodes_db)
+
+    episodes = [Episode(**load_date(row)) for row in episodes_loaded][:-11:-1]
+    build_rss_feed(episodes)
 
 
 if __name__ == "__main__":
