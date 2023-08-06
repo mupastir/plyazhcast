@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?><rss xmlns:itunes="http://www.itunes.com/dtds/podcast-1.0.dtd"  xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0">
+  <channel>
+    <title>Пляжкаст</title>
+    <link>https://plyazhcast.org.ua</link>
+    <language>ua</language>
+    <copyright>Creative Commons - Attribution, Noncommercial, No Derivative Works 3.0 License.</copyright>
+    <itunes:author>Пляжкаст</itunes:author>
+    <itunes:subtitle>Подкаст про пляжний волейбол.</itunes:subtitle>
+    <description>Огляди міжнародних турнірів з волейболу пляжного світової серії Elite 16, PRO Tour, Challange та інші.Огляди матчів волейболу пляжного чемпіонату світу, світових серій Pro tour: Elite 16, Challange, Futures та інших міжнародних турнірів.</description>
+    <itunes:explicit>no</itunes:explicit>
+
+    
+
+    <itunes:image href="https://plyazhcast.org.ua/images/plyazhcast-logo.png"/>
+
+    
+
+    <itunes:keywords>ukranian,beach volleyball,volleyball</itunes:keywords>
+
+
+    <itunes:summary>Подкаст про пляжний волейбол.</itunes:summary><itunes:category text="Sports &amp; Beach Volleyball"><itunes:category text="Sports Journals"/></itunes:category><itunes:category text="Sports"><itunes:category text="Beach Volleyball"/></itunes:category><itunes:owner><itunes:email>plyazhcast@ukr.net</itunes:email><itunes:name>Пляжкаст</itunes:name></itunes:owner>
+    
+    <item>
+      <title><![CDATA[Пляжкаст. Епізод 1]]></title>
+      <description><![CDATA[<p><img src="https://plyazhcast.org.ua/images/podcast-2-cover.jpeg" alt=""></p>
+<ul>
+
+<li>Система відбору на Олімпіаду 2024</li>
+
+<li>Огляд міжнародного рейтингу</li>
+
+</ul>
+<p><a href="https://plyazhcast.org.ua/files/podcast-2-audio.mp3">аудио</a></p>
+<audio src="files/podcast-2-audio.mp3" preload="none"></audio>]]></description>
+      <link>"https://plyazhcast.org.ua/p/2023/8/6/podcast-2"</link>
+      <guid>"https://plyazhcast.org.ua/p/2023/8/6/podcast-2"</guid>
+      <pubDate>Sun, 06 Aug 2023 21:04:19 +0300</pubDate>
+      <itunes:author><![CDATA[Пляжкаст]]></itunes:author>
+      <itunes:summary><![CDATA[
+
+
+
+Система відбору на Олімпіаду 2024
+
+Огляд міжнародного рейтингу
+
+
+аудио
+]]></itunes:summary>
+      <itunes:image href="https://plyazhcast.org.ua/images/podcast-2-cover.jpeg"/>
+      <enclosure length="" type="audio/mp3" url="https://plyazhcast.org.ua/files/podcast-2-audio.mp3"/>
+    <author>plyazhcast@ukr.net (Пляжкаст)</author><itunes:explicit>no</itunes:explicit><itunes:subtitle>Система відбору на Олімпіаду 2024 Огляд міжнародного рейтингу </itunes:subtitle><itunes:keywords>ukrainian,beach volleyball,sports</itunes:keywords></item>
+
+  </channel>
+</rss>
