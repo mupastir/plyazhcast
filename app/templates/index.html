@@ -17,20 +17,22 @@
     </p>
   </header>
 
-  <div class="article__content">
-  
-  <p><img src="/{{episode.cover_url}}" alt=""></p>
-
-  <ul>
-    {% for theme in episode.themes %}
-    <li>{{theme}}<br /></li>
-    {% endfor %}
-  </ul>
-
-  <p><a href="/{{episode.mp3_url}}">аудіо</a><br>
-    <audio src="/{{episode.mp3_url}}" preload="none"></audio>
-    </p>
+  <div class="article__content__wrapper">
+    <div class="article__content">
+      <ul>
+        {% for theme in episode.themes %}
+        <li>{{theme}}<br /></li>
+        {% endfor %}
+      </ul>
+      <p>
+        <a href="/{{episode.mp3_url}}">аудіо</a><br>
+        <audio src="/{{episode.mp3_url}}" preload="none"></audio>
+      </p>
     </div>
+    <div class="article__img__wrapper">
+      <div class="article__img" style="background-image: url({{episode.cover_url}})"></div>
+    </div>
+  </div>
 
   </article>
     {% endfor %}
