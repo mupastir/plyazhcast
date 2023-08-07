@@ -46,7 +46,7 @@ def add_episode(title="", cover_image_path="", mp3_file_path="", themes=""):
         episodes_loaded = json.load(episodes_db)
 
     episodes = [Episode(**load_date(row)) for row in episodes_loaded]
-    new_episode_number = len(episodes) + 1
+    new_episode_number = len(episodes) + 2
     cover_image_name = f"podcast-{new_episode_number}-cover.jpeg"
     audio_name = f"podcast-{new_episode_number}-audio.mp3"
     shutil.copy2(cover_image_path, f"./docs/images/{cover_image_name}")
