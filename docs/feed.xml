@@ -7,6 +7,7 @@
     <itunes:author>Пляжкаст</itunes:author>
     <itunes:subtitle>Подкаст про пляжний волейбол.</itunes:subtitle>
     <description>Огляди міжнародних турнірів з волейболу пляжного світової серії Elite 16, PRO Tour, Challange та інші.Огляди матчів волейболу пляжного чемпіонату світу, світових серій Pro tour: Elite 16, Challange, Futures та інших міжнародних турнірів.</description>
+    <itunes:type>serial</itunes:type>
     <itunes:explicit>no</itunes:explicit>
 
     
@@ -18,7 +19,17 @@
     <itunes:keywords>ukranian,beach volleyball,volleyball</itunes:keywords>
 
 
-    <itunes:summary>Подкаст про пляжний волейбол.</itunes:summary><itunes:category text="Sports &amp; Beach Volleyball"><itunes:category text="Sports Journals"/></itunes:category><itunes:category text="Sports"><itunes:category text="Beach Volleyball"/></itunes:category><itunes:owner><itunes:email>plyazhcast@ukr.net</itunes:email><itunes:name>Пляжкаст</itunes:name></itunes:owner>
+    <itunes:summary>Подкаст про пляжний волейбол.</itunes:summary>
+    <itunes:category text="Sports">
+      <itunes:category text="Volleyball"/>
+    </itunes:category>
+    <itunes:category text="News">
+      <itunes:category text="Sports news"/>
+    </itunes:category>
+    <itunes:owner>
+      <itunes:email>plyazhcast@ukr.net</itunes:email>
+      <itunes:name>Пляжкаст</itunes:name>
+    </itunes:owner>
     
     <item>
       <title><![CDATA[Пляжкаст. Епізод 1]]></title>
