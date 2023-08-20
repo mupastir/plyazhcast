@@ -32,6 +32,37 @@
     </itunes:owner>
     
     <item>
+      <title><![CDATA[Пляжкаст. Епізод 2]]></title>
+      <description><![CDATA[<p><img src="https://plyazhcast.org.ua/images/podcast-3-cover.jpeg" alt=""></p>
+<ul>
+
+<li>Структура CEV</li>
+
+<li>Огляд турніру EuroBeachVolley 2023</li>
+
+</ul>
+<p><a href="https://plyazhcast.org.ua/files/podcast-3-audio.mp3">аудио</a></p>
+<audio src="files/podcast-3-audio.mp3" preload="none"></audio>]]></description>
+      <link>"https://plyazhcast.org.ua/p/2023/8/20/podcast-3"</link>
+      <guid>"https://plyazhcast.org.ua/p/2023/8/20/podcast-3"</guid>
+      <pubDate>Sun, 20 Aug 2023 19:14:12 +0300</pubDate>
+      <itunes:author><![CDATA[Пляжкаст]]></itunes:author>
+      <itunes:summary><![CDATA[
+
+
+
+Структура CEV
+
+Огляд турніру EuroBeachVolley 2023
+
+
+аудио
+]]></itunes:summary>
+      <itunes:image href="https://plyazhcast.org.ua/images/podcast-3-cover.jpeg"/>
+      <enclosure length="" type="audio/mp3" url="https://plyazhcast.org.ua/files/podcast-3-audio.mp3"/>
+    <author>plyazhcast@ukr.net (Пляжкаст)</author><itunes:explicit>no</itunes:explicit><itunes:subtitle>Структура CEV Огляд турніру EuroBeachVolley 2023 </itunes:subtitle><itunes:keywords>ukrainian,beach volleyball,sports</itunes:keywords></item>
+
+    <item>
       <title><![CDATA[Пляжкаст. Епізод 1]]></title>
       <description><![CDATA[<p><img src="https://plyazhcast.org.ua/images/podcast-2-cover.jpeg" alt=""></p>
 <ul>
