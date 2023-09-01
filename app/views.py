@@ -20,7 +20,7 @@ def main_page():
 )
 def episode_page(year, month, day, episode_number):
     try:
-        episode = Episode.objects(number=episode_number).get()
+        episode = Episode.get(number=episode_number)
     except Episode.DoesNotExist:
         raise NotFound
     if not (

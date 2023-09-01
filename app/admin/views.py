@@ -1,16 +1,24 @@
 import functools
 from datetime import datetime
 
-import pytz
-from flask import Blueprint, flash, g, redirect, render_template, request, session, url_for
+from flask import (
+    Blueprint,
+    flash,
+    g,
+    redirect,
+    render_template,
+    request,
+    session,
+    url_for,
+)
 from werkzeug.security import check_password_hash
 from werkzeug.utils import secure_filename
 
 from app.admin.forms import AdminLoginForm, EpisodeUploadForm
 from app.admin.uploader import FileTypes, LocalFileUploader
 from app.models import AdminUser, Episode
+from app.utils import timezone as tz
 
-tz = pytz.timezone("Europe/Kyiv")
 admin_bp = Blueprint("admin", __name__, url_prefix="/admin")
 
 
@@ -22,13 +30,15 @@ def login():
             error = None
             username = form.username.data
             password = form.password.data
-        try:
-            user = AdminUser.objects(email=username).get()
-        except AdminUser.DoesNotExist:
-            error = "Incorrect username."
+            try:
+                user = AdminUser.get_by_email(email=username)
+            except AdminUser.DoesNotExist:
+                error = "Incorrect username."
+            else:
+                if not check_password_hash(user.password_hash, password):
+                    error = "Incorrect password."
         else:
-            if not check_password_hash(user.password, password):
-                error = "Incorrect password."
+            error = form.errors
 
         if error is None:
             session.clear()
@@ -39,10 +49,10 @@ def login():
     return render_template("admin/login.html", form=form)
 
 
-@admin_bp.route("/logout")
+@admin_bp.route("/logout", methods=("POST",))
 def logout():
     session.clear()
-    return redirect(url_for("index"))
+    return redirect(url_for("podcast.main_page"))
 
 
 def login_required(view):
@@ -78,6 +88,7 @@ def create():
         episode = Episode(
             title=form.title.data,
             themes=form.themes.data.split("."),
+            text=form.text.data,
             mp3_url=audio_url,
             cover_url=image_url,
             date_created=datetime.now(tz),

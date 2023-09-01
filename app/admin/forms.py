@@ -1,10 +1,15 @@
 from flask_wtf import FlaskForm
 from flask_wtf.file import FileAllowed, FileField, FileRequired
-from wtforms import PasswordField, StringField, validators
+from wtforms import PasswordField, StringField, TextAreaField, validators
 
 
 class AdminLoginForm(FlaskForm):
-    username = StringField("username")
+    username = StringField(
+        "username",
+        [
+            validators.DataRequired(),
+        ],
+    )
     password = PasswordField(
         "password",
         [
@@ -20,3 +25,4 @@ class EpisodeUploadForm(FlaskForm):
         "cover_image", [FileRequired(), FileAllowed(["jpg", "png"], "Images only!")]
     )
     themes = StringField("themes", [validators.Length(min=8, max=1000)])
+    text = TextAreaField("text")
