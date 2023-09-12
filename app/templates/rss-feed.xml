@@ -39,7 +39,7 @@
 <li>{{theme}}</li>
 {% endfor %}
 </ul>
-<p><a href="https://plyazhcast.org.ua/{{episode.mp3_url}}">аудио</a></p>
+<p><a href="{{episode.mp3_url}}">аудио</a></p>
 <audio src="{{episode.mp3_url}}" preload="none"></audio>]]></description>
       <link>"https://plyazhcast.org.ua/p/{{episode.date_created.year}}/{{episode.date_created.month}}/{{episode.date_created.day}}/podcast-{{episode.number}}"</link>
       <guid>"https://plyazhcast.org.ua/p/{{episode.date_created.year}}/{{episode.date_created.month}}/{{episode.date_created.day}}/podcast-{{episode.number}}"</guid>
@@ -55,7 +55,7 @@
 аудио
 ]]></itunes:summary>
       <itunes:image href="https://plyazhcast.org.ua/{{episode.cover_url}}"/>
-      <enclosure length="" type="audio/mp3" url="https://plyazhcast.org.ua/{{episode.mp3_url}}"/>
+      <enclosure length="" type="audio/mp3" url="{{episode.mp3_url}}"/>
     <author>plyazhcast@ukr.net (Пляжкаст)</author><itunes:explicit>no</itunes:explicit><itunes:subtitle>{% for theme in episode.themes %}{{theme}} {% endfor %}</itunes:subtitle><itunes:keywords>ukrainian,beach volleyball,sports</itunes:keywords></item>
 {% endfor %}
   </channel>

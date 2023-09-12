@@ -41,8 +41,8 @@
 <li>Огляд турніру EuroBeachVolley 2023</li>
 
 </ul>
-<p><a href="https://plyazhcast.org.ua/files/podcast-3-audio.mp3">аудио</a></p>
-<audio src="files/podcast-3-audio.mp3" preload="none"></audio>]]></description>
+<p><a href="https://cdn.plyazhcast.org.ua/podcast-3-audio.mp3">аудио</a></p>
+<audio src="https://cdn.plyazhcast.org.ua/podcast-3-audio.mp3" preload="none"></audio>]]></description>
       <link>"https://plyazhcast.org.ua/p/2023/8/20/podcast-3"</link>
       <guid>"https://plyazhcast.org.ua/p/2023/8/20/podcast-3"</guid>
       <pubDate>Sun, 20 Aug 2023 19:14:12 +0300</pubDate>
@@ -59,7 +59,7 @@
 аудио
 ]]></itunes:summary>
       <itunes:image href="https://plyazhcast.org.ua/images/podcast-3-cover.jpeg"/>
-      <enclosure length="" type="audio/mp3" url="https://plyazhcast.org.ua/files/podcast-3-audio.mp3"/>
+      <enclosure length="" type="audio/mp3" url="https://cdn.plyazhcast.org.ua/podcast-3-audio.mp3"/>
     <author>plyazhcast@ukr.net (Пляжкаст)</author><itunes:explicit>no</itunes:explicit><itunes:subtitle>Структура CEV Огляд турніру EuroBeachVolley 2023 </itunes:subtitle><itunes:keywords>ukrainian,beach volleyball,sports</itunes:keywords></item>
 
     <item>
@@ -72,8 +72,8 @@
 <li>Огляд міжнародного рейтингу</li>
 
 </ul>
-<p><a href="https://plyazhcast.org.ua/files/podcast-2-audio.mp3">аудио</a></p>
-<audio src="files/podcast-2-audio.mp3" preload="none"></audio>]]></description>
+<p><a href="https://cdn.plyazhcast.org.ua/podcast-2-audio.mp3">аудио</a></p>
+<audio src="https://cdn.plyazhcast.org.ua/podcast-2-audio.mp3" preload="none"></audio>]]></description>
       <link>"https://plyazhcast.org.ua/p/2023/8/6/podcast-2"</link>
       <guid>"https://plyazhcast.org.ua/p/2023/8/6/podcast-2"</guid>
       <pubDate>Sun, 06 Aug 2023 21:04:19 +0300</pubDate>
@@ -90,7 +90,7 @@
 аудио
 ]]></itunes:summary>
       <itunes:image href="https://plyazhcast.org.ua/images/podcast-2-cover.jpeg"/>
-      <enclosure length="" type="audio/mp3" url="https://plyazhcast.org.ua/files/podcast-2-audio.mp3"/>
+      <enclosure length="" type="audio/mp3" url="https://cdn.plyazhcast.org.ua/podcast-2-audio.mp3"/>
     <author>plyazhcast@ukr.net (Пляжкаст)</author><itunes:explicit>no</itunes:explicit><itunes:subtitle>Система відбору на Олімпіаду 2024 Огляд міжнародного рейтингу </itunes:subtitle><itunes:keywords>ukrainian,beach volleyball,sports</itunes:keywords></item>
 
   </channel>

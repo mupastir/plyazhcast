@@ -6,15 +6,17 @@ from functools import reduce
 
 import click
 import pytz
+from dotenv import load_dotenv
 from jinja2 import Environment, FileSystemLoader, select_autoescape
 
 from app.models import Episode
-from app.utils import dump_date, load_date
+from app.utils import dump_date, get_s3_resource, load_date
 
 tz = pytz.timezone("Europe/Kyiv")
 jinja_env = Environment(
     loader=FileSystemLoader("./app/templates"), autoescape=select_autoescape()
 )
+load_dotenv()
 
 
 def build_main_page(episodes: list[Episode]):
@@ -39,24 +41,22 @@ def cli():
 @cli.command("add_new_episode")
 @click.option("--title", help="Episode title", default="")
 @click.option("--cover_image_path", help="Cover image path", default="")
-@click.option("--mp3_file_path", help="Audio file path", default="")
 @click.option("--themes", help="Themes", default="")
-def add_episode(title="", cover_image_path="", mp3_file_path="", themes=""):
+def add_episode(title="", cover_image_path="", themes=""):
     with open("./episodes.json", "r") as episodes_db:
         episodes_loaded = json.load(episodes_db)
 
     episodes = [Episode(**load_date(row)) for row in episodes_loaded]
     new_episode_number = len(episodes) + 2
     cover_image_name = f"podcast-{new_episode_number}-cover.jpeg"
-    audio_name = f"podcast-{new_episode_number}-audio.mp3"
+    mp3_url = f"https://cdn.plyazcast.org.ua/podcast-{new_episode_number}-audio.mp3"
     shutil.copy2(cover_image_path, f"./docs/images/{cover_image_name}")
-    shutil.copy2(mp3_file_path, f"./docs/files/{audio_name}")
     themes = themes.split("\n")
     new_episode = Episode(
         title=title,
         number=new_episode_number,
         cover_url=f"images/{cover_image_name}",
-        mp3_url=f"files/{audio_name}",
+        mp3_url=mp3_url,
         themes=themes,
         date_created=datetime.now(tz),
     )
@@ -108,6 +108,24 @@ def rebuild_rss_feed():
 
     episodes = [Episode(**load_date(row)) for row in episodes_loaded][:-11:-1]
     build_rss_feed(episodes)
+
+
+@cli.command("upload_audio")
+@click.option("--episode_number", help="Episode number", type=int)
+@click.option("--mp3_file_path", help="Audio file path", default="")
+def upload_audio(episode_number: int, mp3_file_path: str):
+    aws_access_key_id = os.environ.get("AWS_KEY_ID_S3")
+    aws_secret_access_key = os.environ.get("AWS_SECRET_KEY_S3")
+    bucket_name = os.environ.get("AWS_BUCKET_NAME")
+    account_id = os.environ.get("CLOUDFLARE_ACCOUNT_ID")
+
+    resource = get_s3_resource(account_id, aws_access_key_id, aws_secret_access_key)
+    bucket = resource.Bucket(bucket_name)
+    audio_name = f"podcast-{episode_number}-audio.mp3"
+    with open(mp3_file_path, "rb") as mp3_file:
+        bucket.upload_fileobj(
+            mp3_file, audio_name, ExtraArgs={"ContentType": "audio/mpeg"}
+        )
 
 
 if __name__ == "__main__":
