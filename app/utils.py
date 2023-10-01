@@ -26,4 +26,5 @@ def get_s3_resource(account_id: str, key: str, secret: str):
         endpoint_url=f"https://{account_id}.r2.cloudflarestorage.com",
         aws_access_key_id=key,
         aws_secret_access_key=secret,
+        region_name="auto",
     )
