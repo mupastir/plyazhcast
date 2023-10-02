@@ -49,7 +49,7 @@ def add_episode(title="", cover_image_path="", themes=""):
     episodes = [Episode(**load_date(row)) for row in episodes_loaded]
     new_episode_number = len(episodes) + 2
     cover_image_name = f"podcast-{new_episode_number}-cover.jpeg"
-    mp3_url = f"https://cdn.plyazcast.org.ua/podcast-{new_episode_number}-audio.mp3"
+    mp3_url = f"https://cdn.plyazhcast.org.ua/podcast-{new_episode_number}-audio.mp3"
     shutil.copy2(cover_image_path, f"./docs/images/{cover_image_name}")
     themes = themes.split("\n")
     new_episode = Episode(
