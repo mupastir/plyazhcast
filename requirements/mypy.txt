@@ -1,3 +1,0 @@
--r base.txt
-
-mypy==0.960

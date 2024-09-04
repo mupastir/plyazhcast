@@ -126,6 +126,7 @@ def upload_audio(episode_number: int, mp3_file_path: str):
         bucket.upload_fileobj(
             mp3_file, audio_name, ExtraArgs={"ContentType": "audio/mpeg"}
         )
+    print(f"Audio file uploaded to {bucket_name}/{audio_name}")
 
 
 if __name__ == "__main__":
