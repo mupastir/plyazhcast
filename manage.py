@@ -4,19 +4,43 @@ import shutil
 from datetime import datetime
 from functools import reduce
 
+import asyncio
 import click
 import pytz
 from dotenv import load_dotenv
 from jinja2 import Environment, FileSystemLoader, select_autoescape
 
-from app.models import Episode
+from app.models.episode import Episode
 from app.utils import dump_date, get_s3_resource, load_date
+from app.settings import settings
 
 tz = pytz.timezone("Europe/Kyiv")
 jinja_env = Environment(
     loader=FileSystemLoader("./app/templates"), autoescape=select_autoescape()
 )
 load_dotenv()
+
+
+async def generate_episode_image_cover(themes: str, image_path_to_save: str):
+    from PIL import Image
+    from io import BytesIO
+    from app.gateways.openai import OpenAI
+    from app.models.openai.response import Answer
+    import httpx
+
+    openai = OpenAI(settings.openai_api_key, model=settings.openai_model)
+
+    promt = f"""Обкладинка для подкасту про пляжний волейбол за наступними шоунотами:
+        {themes}
+    """
+
+    response: Answer = await openai.image_generate(promt)
+    url = response.data[0].url
+    async with httpx.AsyncClient(timeout=180) as client:
+        image_response = await client.get(str(url))
+
+    image = Image.open(BytesIO(image_response.content)).convert('RGB')
+    image.save(image_path_to_save)
 
 
 def build_main_page(episodes: list[Episode]):
@@ -40,9 +64,8 @@ def cli():
 
 @cli.command("add_new_episode")
 @click.option("--title", help="Episode title", default="")
-@click.option("--cover_image_path", help="Cover image path", default="")
 @click.option("--themes", help="Themes", default="")
-def add_episode(title="", cover_image_path="", themes=""):
+def add_episode(title="", themes=""):
     with open("./episodes.json", "r") as episodes_db:
         episodes_loaded = json.load(episodes_db)
 
@@ -50,7 +73,8 @@ def add_episode(title="", cover_image_path="", themes=""):
     new_episode_number = len(episodes) + 2
     cover_image_name = f"podcast-{new_episode_number}-cover.jpeg"
     mp3_url = f"https://cdn.plyazhcast.org.ua/podcast-{new_episode_number}-audio.mp3"
-    shutil.copy2(cover_image_path, f"./docs/images/{cover_image_name}")
+    cover_image_path = f"./docs/images/{cover_image_name}"
+    asyncio.run(generate_episode_image_cover(themes, cover_image_path))
     themes = themes.split("\n")
     new_episode = Episode(
         title=title,
@@ -58,7 +82,7 @@ def add_episode(title="", cover_image_path="", themes=""):
         cover_url=f"images/{cover_image_name}",
         mp3_url=mp3_url,
         themes=themes,
-        date_created=datetime.now(tz),
+        date_created=datetime(year=2024, day=9, month=9, tzinfo=tz),
     )
     episodes.append(new_episode)
     episode_link_path = f"./docs/p/{new_episode.date_created.year}/{new_episode.date_created.month}/{new_episode.date_created.day}"
@@ -114,13 +138,8 @@ def rebuild_rss_feed():
 @click.option("--episode_number", help="Episode number", type=int)
 @click.option("--mp3_file_path", help="Audio file path", default="")
 def upload_audio(episode_number: int, mp3_file_path: str):
-    aws_access_key_id = os.environ.get("AWS_KEY_ID_S3")
-    aws_secret_access_key = os.environ.get("AWS_SECRET_KEY_S3")
-    bucket_name = os.environ.get("AWS_BUCKET_NAME")
-    account_id = os.environ.get("CLOUDFLARE_ACCOUNT_ID")
-
-    resource = get_s3_resource(account_id, aws_access_key_id, aws_secret_access_key)
-    bucket = resource.Bucket(bucket_name)
+    resource = get_s3_resource(settings.cloudflare_account_id, settings.aws_key_id_s3, settings.aws_secret_key_s3)
+    bucket = resource.Bucket(settings.aws_bucket_name)
     audio_name = f"podcast-{episode_number}-audio.mp3"
     with open(mp3_file_path, "rb") as mp3_file:
         bucket.upload_fileobj(
